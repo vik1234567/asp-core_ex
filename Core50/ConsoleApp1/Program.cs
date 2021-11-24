@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsoleApp1
 {
@@ -35,9 +36,22 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            // See https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iservicecollection
+            var serviceCollection = new ServiceCollection();
+
+            serviceCollection.AddSingleton<ClassA>();
+            serviceCollection.AddSingleton<IThing, ClassB>();
+
+            // See https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iserviceprovider-and-how-is-it-built
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+
+
             IThing thing = new ClassB();
             ClassA classA = new ClassA(thing);
             classA.DoWork();
+
+            Console.WriteLine("Done");
+            Console.Read();
         }
     }
 }

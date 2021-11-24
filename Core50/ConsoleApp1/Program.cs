@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsoleApp1
@@ -38,6 +39,7 @@ namespace ConsoleApp1
         {
             // See https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iservicecollection
             var serviceCollection = new ServiceCollection();
+            var mi = MethodInfo.GetCurrentMethod().Name;
 
             serviceCollection.AddSingleton<ClassA>();
             serviceCollection.AddSingleton<IThing, ClassB>();

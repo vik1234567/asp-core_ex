@@ -4,6 +4,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace Benchmarks
 {
+    //[ClrJob(isBaseline: true), CoreJob, MonoJob]
     public class SingleVsFirst
     {
         private readonly List<string> _haystack = new List<string>();
